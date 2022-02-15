@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report</title>
+    {{
+      include("partials/assets")
+    }}
+  </head>
+  <body class="d-flex flex-column h-100">
+    {{ include("partials/header") }}
+    <main class="container mt-4">
+      <h1>Report</h1>
+      <div class="mt-5 mb-5">
+        <h3>Enties added Last Week v/s Second Last Week comparision</h3>
+        <table class="table">
+          <thead>
+            <th>Last Week</th>
+            <th>Second Last Week</th>
+          </thead>
+          <tbody>
+            <td>{{ lastWeekEnties }}</td>
+            <td>{{ secondLastWeekEntries }}</td>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-5 mb-5">
+        <h3>Averages</h3>
+        <table class="table">
+          <tbody>
+            <th>Avg calories last week per user</th>
+            <td class="fw-bold">{{ avgCaloriesIntakeInLastWeek }}</td>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    {{ include("partials/footer") }}
+  </body>
+</html>

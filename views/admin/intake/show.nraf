@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calorie Intakes - All Users</title>
+    {{
+      include("partials/assets")
+    }}
+  </head>
+  <body class="d-flex flex-column h-100">
+    {{ include("partials/header") }}
+    <main class="container mt-4">
+      <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+        <h1>Calorie Details - All Users</h1>
+        <a class="btn btn-primary" role="button" href="/intake/new">
+          Add Intake
+        </a>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Time</th>
+            <th scope="col">Calories</th>
+            <th scope="col" colspan="2" class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for intake in intakes %}
+            {% if intake["isOverDailyCalorieCount"] %}
+            <tr class="bg-warning">
+            {% else %}
+            <tr>
+            {% endif %}
+            <th scope="row">{{ intake.id }}</th>
+            <td>{{ intake.name }}</td>
+            <td>{{ (new Date(intake.date_time)).toLocaleString() }}</td>
+            <td>{{ intake.calories }}</td>
+            <td>
+              <a
+                role="button"
+                class="btn btn-outline-primary"
+                href="/admin/intake/{{ intake.id }}/edit"
+              >
+                Edit
+              </a>
+            </td>
+            <td>
+              <button
+                type="button"
+                data-intake-id="{{ intake.id }}"
+                class="btn btn-outline-danger deleteIntakeButton"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </main>
+    {{ include("partials/footer") }}
+  </body>
+</html>
